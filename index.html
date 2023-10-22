@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>The Fool</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+        <style type="text/css">
+body {
+    background-color: #1b1b1b !important;
+    overflow: hidden;
+    display: flex;
+};
+        </style>
+
+    </head>
+    <body>
+
+
+        <div id="Contain" class="container text-light text-center mt-5">
+            <h1 class="display-1 mt-5" data-value="The Fool">The Fool</h1>
+        </div> 
+
+        <footer class="mt-auto text-white-50 text-center fixed-bottom">
+            <p> Email: <a href="">0xTheFool@proton.me</a> </p>
+        </footer>
+
+        <script>
+            const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ@$%^&*";
+            let interval = null;
+            document.querySelector("h1").onmouseover = event => {
+                let iteration = 0;
+                clearInterval(interval);
+                interval = setInterval(() => {
+                    event.target.innerText = event.target.innerText.split("")
+                        .map((letter,index) => {
+                            if (index < iteration) {
+                                return event.target.dataset.value[index];
+                            }
+
+                            return letters[Math.floor(Math.random() * letters.length)]
+                        }).join("");
+
+                    if (iteration >= event.target.dataset.value.length) {
+                        clearInterval(interval);
+                    }
+
+                    iteration += 1/3;
+                },30);
+            }
+        </script>
+    </body>
+
+</html>
